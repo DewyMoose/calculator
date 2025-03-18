@@ -19,8 +19,46 @@ const decimal = document.querySelector(".decimal");
 const equals = document.querySelector(".equals");
 const textBar = document.querySelector(".textBar");
 
-const button = document.querySelectorAll(".button");
+const buttons = document.querySelectorAll(".button");
+let emptyString = "";
+let num1 = 0;
+let num2 = 0;
 
-button.addEventListener("click", function () {
-  textBar.textContent = button.textContent;
+buttons.forEach((button) => {
+  button.addEventListener("click", function () {
+    if (emptyString.length < 11) {
+      emptyString += button.textContent;
+    }
+
+    textBar.textContent = emptyString;
+  });
 });
+
+plus.addEventListener("click", plusFunction);
+
+function plusFunction() {
+  num1 = parseFloat(emptyString);
+  console.log(num1);
+  textBar.textContent = `+${num1}`;
+  emptyString = "";
+  console.log(num1);
+}
+
+equals.addEventListener("click", equalsFunction);
+function equalsFunction() {
+  console.log(num1);
+  let num2 = parseFloat(emptyString);
+  console.log(num2);
+  let total = num1 + num2;
+  console.log(total);
+  textBar.textContent = total;
+  emptyString = total;
+}
+
+clear.addEventListener("click", clearEverything);
+function clearEverything() {
+  emptyString = "";
+  textBar.textContent = "0";
+  num1 = 0;
+  num2 = 0;
+}
