@@ -2,4 +2,95 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "roboto";
+}
+
+:root {
+  --light-grey-color: rgb(108, 109, 110);
+  --dark-grey-background: rgb(37, 37, 38);
+  --orange-background: rgb(241, 154, 56);
+  --regular-grey-color: rgb(78, 78, 79);
+}
+
+.screen-container {
+  width: 100vh;
+  height: 100vh;
+  background-color: var(--dark-grey-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator-container {
+  height: 650px;
+  width: 410px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: black;
+  border-radius: 20px;
+}
+
+.textBar {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.first-column,
+.second-column,
+.third-column,
+.fourth-column {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.first-column > div,
+.second-column > div,
+.third-column > div,
+.fourth-column > div {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  width: 90px;
+  color: white;
+  font-size: 2.5rem;
+}
+
+.clear,
+.plus-minus,
+.percentage {
+  background-color: var(--light-grey-color);
+}
+
+.seven,
+.eight,
+.nine,
+.four,
+.five,
+.six,
+.one,
+.two,
+.three,
+.blank,
+.zero,
+.decimal {
+  background-color: var(--regular-grey-color);
+}
+
+.divide,
+.multiply,
+.minus,
+.plus,
+.equals {
+  background-color: var(--orange-background);
 }
