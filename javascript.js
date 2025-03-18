@@ -1,29 +1,26 @@
-// let choice = prompt("would you like to add, subtract, multiply, or divide?");
-// let num1 = parseFloat(prompt("enter your first number"));
-// let num2 = parseFloat(prompt("enter your second number"));
+const clear = document.querySelector(".clear");
+const plusMinus = document.querySelector(".plus-minus");
+const percentage = document.querySelector(".percentage");
+const divide = document.querySelector(".divide");
+const seven = document.querySelector(".seven");
+const eight = document.querySelector(".eight");
+const nine = document.querySelector(".nine");
+const multiply = document.querySelector(".multiply");
+const four = document.querySelector(".four");
+const five = document.querySelector(".five");
+const six = document.querySelector(".six");
+const minus = document.querySelector(".minus");
+const one = document.querySelector(".one");
+const two = document.querySelector(".two");
+const three = document.querySelector(".three");
+const plus = document.querySelector(".plus");
+const zero = document.querySelector(".zero");
+const decimal = document.querySelector(".decimal");
+const equals = document.querySelector(".equals");
+const textBar = document.querySelector(".textBar");
 
-if (choice == "add") {
-  add(num1, num2);
-} else if (choice == "subtract") {
-  subtract(num1, num2);
-} else if (choice == "multiply") {
-  multiply(num1, num2);
-} else if (choice == "divide") {
-  divide(num1, num2);
-}
+const button = document.querySelectorAll(".button");
 
-function add(num1, num2) {
-  console.log(num1 + num2);
-}
-
-function subtract(num1, num2) {
-  console.log(num1 - num2);
-}
-
-function multiply(num1, num2) {
-  console.log(num1 * num2);
-}
-
-function divide(num1, num2) {
-  console.log(num1 / num2);
-}
+button.addEventListener("click", function () {
+  textBar.textContent = button.textContent;
+});

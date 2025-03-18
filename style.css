@@ -23,7 +23,7 @@
 
 .calculator-container {
   height: 650px;
-  width: 410px;
+  width: 420px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   background-color: black;
