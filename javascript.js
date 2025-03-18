@@ -21,44 +21,132 @@ const textBar = document.querySelector(".textBar");
 
 const buttons = document.querySelectorAll(".button");
 let emptyString = "";
-let num1 = 0;
-let num2 = 0;
+let num1 = null;
+let num2 = null;
+let total = 0;
+let operator = null;
+
+let operators = {
+  "+": (num1, num2) => num1 + num2,
+  "-": (a, b) => a - b,
+  "/": (a, b) => a / b,
+  "*": (a, b) => a * b,
+};
 
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
     if (emptyString.length < 11) {
       emptyString += button.textContent;
     }
-
     textBar.textContent = emptyString;
   });
 });
+plus.addEventListener("click", addNumbers);
 
-plus.addEventListener("click", plusFunction);
-
-function plusFunction() {
-  num1 = parseFloat(emptyString);
-  console.log(num1);
-  textBar.textContent = `+${num1}`;
+function addNumbers() {
+  operator = "+";
+  if (num1 == null) {
+    num1 = parseFloat(emptyString);
+    total = num1;
+  } else if (num1 != null && emptyString != "") {
+    num2 = parseFloat(emptyString);
+    total = operators["+"](num1, num2);
+    num1 = total;
+  } else if (emptyString == "") {
+    total += total;
+    textBar.textContent = total;
+  }
   emptyString = "";
-  console.log(num1);
+  textBar.textContent = total;
+}
+
+minus.addEventListener("click", subtractNumbers);
+
+function subtractNumbers() {
+  operator = "-";
+  if (num1 == null) {
+    num1 = parseFloat(emptyString);
+    total = num1;
+  } else if (num1 != null && emptyString != "") {
+    num2 = parseFloat(emptyString);
+    total = operators["-"](num1, num2);
+    num1 = total;
+  } else if (emptyString == "") {
+    total += total;
+    textBar.textContent = total;
+  }
+  emptyString = "";
+  textBar.textContent = total;
+}
+
+divide.addEventListener("click", divideNumbers);
+
+function divideNumbers() {
+  operator = "/";
+  if (num1 == null) {
+    num1 = parseFloat(emptyString);
+    total = num1;
+  } else if (num1 != null && emptyString != "") {
+    num2 = parseFloat(emptyString);
+    total = operators["/"](num1, num2);
+    num1 = total;
+  } else if (emptyString == "") {
+    total += total;
+    textBar.textContent = total;
+  }
+  emptyString = "";
+  textBar.textContent = total;
+}
+
+multiply.addEventListener("click", multiplyNumbers);
+
+function multiplyNumbers() {
+  operator = "*";
+  if (num1 == null) {
+    num1 = parseFloat(emptyString);
+    total = num1;
+  } else if (num1 != null && emptyString != "") {
+    num2 = parseFloat(emptyString);
+    total = operators["*"](num1, num2);
+    num1 = total;
+  } else if (emptyString == "") {
+    total += total;
+    textBar.textContent = total;
+  }
+  emptyString = "";
+  textBar.textContent = total;
 }
 
 equals.addEventListener("click", equalsFunction);
 function equalsFunction() {
-  console.log(num1);
-  let num2 = parseFloat(emptyString);
-  console.log(num2);
-  let total = num1 + num2;
-  console.log(total);
-  textBar.textContent = total;
-  emptyString = total;
+  if (num1 != null && operator == "+") {
+    num2 = parseFloat(emptyString);
+    total = operators["+"](num1, num2);
+    textBar.textContent = total;
+  }
+  if (num1 != null && operator == "-") {
+    num2 = parseFloat(emptyString);
+    total = operators["-"](num1, num2);
+    textBar.textContent = total;
+  }
+  if (num1 != null && operator == "/") {
+    num2 = parseFloat(emptyString);
+    total = operators["/"](num1, num2);
+    textBar.textContent = total;
+  }
+  if (num1 != null && operator == "*") {
+    num2 = parseFloat(emptyString);
+    total = operators["*"](num1, num2);
+    textBar.textContent = total;
+  }
 }
 
 clear.addEventListener("click", clearEverything);
 function clearEverything() {
   emptyString = "";
   textBar.textContent = "0";
-  num1 = 0;
-  num2 = 0;
+  num1 = null;
+  num2 = null;
+  total = null;
+  operator = null;
 }
