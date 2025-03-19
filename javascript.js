@@ -2,24 +2,15 @@ const clear = document.querySelector(".clear");
 const plusMinus = document.querySelector(".plus-minus");
 const percentage = document.querySelector(".percentage");
 const divide = document.querySelector(".divide");
-const seven = document.querySelector(".seven");
-const eight = document.querySelector(".eight");
-const nine = document.querySelector(".nine");
 const multiply = document.querySelector(".multiply");
-const four = document.querySelector(".four");
-const five = document.querySelector(".five");
-const six = document.querySelector(".six");
 const minus = document.querySelector(".minus");
-const one = document.querySelector(".one");
-const two = document.querySelector(".two");
-const three = document.querySelector(".three");
 const plus = document.querySelector(".plus");
 const zero = document.querySelector(".zero");
 const decimal = document.querySelector(".decimal");
 const equals = document.querySelector(".equals");
 const textBar = document.querySelector(".textBar");
-
 const buttons = document.querySelectorAll(".button");
+
 let emptyString = "";
 let num1 = null;
 let num2 = null;
@@ -45,6 +36,19 @@ buttons.forEach((button) => {
 plus.addEventListener("click", addNumbers);
 
 function addNumbers() {
+  if (operator != "+" && operator == "-") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 - num2;
+    textBar.textContent = total;
+  } else if (operator != "+" && operator == "*") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 * num2;
+    textBar.textContent = total;
+  } else if (operator != "+" && operator == "/") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 / num2;
+    textBar.textContent = total;
+  }
   operator = "+";
   if (num1 == null) {
     num1 = parseFloat(emptyString);
@@ -72,12 +76,23 @@ function addNumbers() {
 minus.addEventListener("click", subtractNumbers);
 
 function subtractNumbers() {
+  if (operator != "-" && operator == "+") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 + num2;
+    textBar.textContent = total;
+  } else if (operator != "-" && operator == "*") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 * num2;
+    textBar.textContent = total;
+  } else if (operator != "-" && operator == "/") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 / num2;
+    textBar.textContent = total;
+  }
   operator = "-";
-  console.log(total);
   if (num1 == null) {
     num1 = parseFloat(emptyString);
     total = num1;
-    console.log("first if");
   } else if (
     num1 != null &&
     textBar.textContent == total &&
@@ -89,11 +104,9 @@ function subtractNumbers() {
     num2 = parseFloat(emptyString);
     total = operators["-"](num1, num2);
     num1 = total;
-    console.log("second if");
   } else if (emptyString == "") {
     total -= total;
     textBar.textContent = total;
-    console.log("fourth if");
   }
   emptyString = "";
   textBar.textContent = total;
@@ -101,7 +114,27 @@ function subtractNumbers() {
 
 divide.addEventListener("click", divideNumbers);
 
+function roundToFour(number) {
+  return Math.round(number * 10000) / 10000;
+}
+
 function divideNumbers() {
+  if (operator != "/" && operator == "+") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 + num2;
+    total = roundToFour(total);
+    textBar.textContent = total;
+  } else if (operator != "/" && operator == "*") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 * num2;
+    total = roundToFour(total);
+    textBar.textContent = total;
+  } else if (operator != "/" && operator == "-") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 - num2;
+    total = roundToFour(total);
+    textBar.textContent = total;
+  }
   operator = "/";
   if (num1 == null) {
     num1 = parseFloat(emptyString);
@@ -116,9 +149,11 @@ function divideNumbers() {
   } else if (num1 != null && emptyString != "") {
     num2 = parseFloat(emptyString);
     total = operators["/"](num1, num2);
+    total = roundToFour(total);
     num1 = total;
   } else if (emptyString == "") {
     total /= total;
+    total = roundToFour(total);
     textBar.textContent = total;
   }
   emptyString = "";
@@ -128,6 +163,19 @@ function divideNumbers() {
 multiply.addEventListener("click", multiplyNumbers);
 
 function multiplyNumbers() {
+  if (operator != "*" && operator == "+") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 + num2;
+    textBar.textContent = total;
+  } else if (operator != "*" && operator == "-") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 - num2;
+    textBar.textContent = total;
+  } else if (operator != "*" && operator == "/") {
+    num2 = parseFloat(textBar.textContent);
+    total = num1 / num2;
+    textBar.textContent = total;
+  }
   operator = "*";
   if (num1 == null) {
     num1 = parseFloat(emptyString);
@@ -173,21 +221,23 @@ function equalsFunction() {
     num2 = parseFloat(emptyString);
     total = operators["+"](num1, num2);
     textBar.textContent = total;
-  }
-  if (num1 != null && operator == "-") {
+    operator = "=";
+  } else if (num1 != null && operator == "-") {
     num2 = parseFloat(emptyString);
     total = operators["-"](num1, num2);
     textBar.textContent = total;
-  }
-  if (num1 != null && operator == "/") {
+    operator = "=";
+  } else if (num1 != null && operator == "/") {
     num2 = parseFloat(emptyString);
     total = operators["/"](num1, num2);
+    total = roundToFour(total);
     textBar.textContent = total;
-  }
-  if (num1 != null && operator == "*") {
+    operator = "=";
+  } else if (num1 != null && operator == "*") {
     num2 = parseFloat(emptyString);
     total = operators["*"](num1, num2);
     textBar.textContent = total;
+    operator = "=";
   }
 }
 
